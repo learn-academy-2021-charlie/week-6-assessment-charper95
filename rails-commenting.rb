@@ -6,15 +6,15 @@
 
 # FILE: app/controller/blog_posts_controller.rb
 
-# ---1)
+# ---1) The Controller that gets information from the BlogPost model.
 class BlogPostsController < ApplicationController
   def index
-    # ---2)
+    # ---2) Instance variable that is assigned an active record query that shows all rows in the BlogPost model database.
     @posts = BlogPost.all
   end
 
   def show
-    # ---3)
+    # ---3) Instance variable that is assigned an active record query that shows the row in the BlogPost model database with the given id. 
     @post = BlogPost.find(params[:id])
   end
 
