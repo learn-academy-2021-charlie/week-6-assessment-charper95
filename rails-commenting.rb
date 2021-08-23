@@ -18,13 +18,13 @@ class BlogPostsController < ApplicationController
     @post = BlogPost.find(params[:id])
   end
 
-  # ---4)
+  # ---4) New Controller Method will create a new object in the database.
   def new
     @post = Post.new
   end
 
   def create
-    # ---5)
+    # ---5) Create will input the given data to the new object in the database. It is passed strong params, which are specific parameters that are set to be allowed to be added to the new object using the method under the private method.
     @post = BlogPost.create(blog_post_params)
     if @post.valid?
       redirect_to blog_post_path(@post)
@@ -33,14 +33,14 @@ class BlogPostsController < ApplicationController
     end
   end
 
-  # ---6)
+  # ---6) Will show the BlogPost row with the given parameter in order to edit.
   def edit
     @post = BlogPost.find(params[:id])
   end
 
   def update
     @post = BlogPost.find(params[:id])
-    # ---7)
+    # ---7) Update will update the attributes of the object with the given strong params, which are set under the private method.
     @post.update(blog_post_params)
     if @post.valid?
       redirect_to blog_post_path(@post)
@@ -54,15 +54,15 @@ class BlogPostsController < ApplicationController
     if @post.destroy
       redirect_to blog_posts_path
     else
-      # ---8)
+      # ---8) If the destroy method does not destroy the object given, it will redirect to the show page of the object you tried to delete.
       redirect_to blog_post_path(@post)
     end
   end
 
-  # ---9)
+  # ---9) Private is where you set the strong parameters. The methods under the private keyword will only be available to be called within the controller.
   private
   def blog_post_params
-    # ---10)
+    # ---10) Permits the use of the title and content attributes to be passed as strong parameters.
     params.require(:blog_post).permit(:title, :content)
   end
 end
